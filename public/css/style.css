@@ -169,8 +169,23 @@ select.form-input {
 }
 
 /* Style for customers page */
-.mainDIV{
-  width:100%;
-  height:100%;
-  background-color:red;
+
+.custinfolabel{
+  position:relative;
+  top: 15px;
+}
+
+#customersubmit{
+  position: relative;
+  left: 35%;
+}
+
+.seniorbtn{
+  position: relative;
+  top: 20px;
+}
+
+.seniorfield{
+  position: relative;
+  top: 10px;
 }
