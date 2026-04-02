@@ -27,10 +27,9 @@
 
   <!-- Customer form -->
   <main class="layout--center">
-    <form class="card" id="customerForm" >
      <div class="customerInfoContainer">
             <h1>Enter Customer Info</h1>
-            <form action="/submit-customer-info" method="POST">
+            <form class="card" id="customerForm">
                 <label class="custinfolabel" for="name">First:</label>
                 <input type="text" id="firstinput" name="name" required>
                 <label class="custinfolabel" for="name">Last:</label>
@@ -50,15 +49,14 @@
                     </div>
 
                     <div>
-                        <input class="seniorbtn" required=true type="radio" id="nonsenior" name="option" value="nonsenior" />
+                        <input class="seniorbtn" required=true type="radio" id="senior" name="option" value="nonsenior" />
                         <label for="nonsenior">I am not a senior</label>
                     </div>
 
                 </fieldset>
                 <button id="customersubmit" class="btn" type="submit">Submit</button>
-
+              </form>
         </div>
-    </form>
   </main>
 
 <script src="../js/customer.js"></script>

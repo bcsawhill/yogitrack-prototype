@@ -9,6 +9,8 @@ app.use(express.static("public"));
 app.use(express.json());
 
 app.use("/api/instructor", require("./routes/instructorRoutes.cjs"));
+app.use("/api/customer", require("./routes/customerRoutes.cjs"));
+
 
 
 
