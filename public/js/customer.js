@@ -8,10 +8,12 @@ document.getElementById("customerForm").addEventListener("submit", async (e) => 
 
     const customerData = {
       customerId: nextId,
-      firstName: document.getElementById("firstinput").value.trim(),
-      lastName: document.getElementById("lastinput").value.trim(),
+      firstName: document.getElementById("firstName").value.trim(),
+      lastName: document.getElementById("lastName").value.trim(),
       email: document.getElementById("email").value.trim(),
       phone: document.getElementById("phone").value.trim(),
+      address: document.getElementById("address").value.trim(),
+      classBalance: Number(document.getElementById("classBalance").value) ?? 0,
       senior: document.getElementById("senior").checked
     };
 

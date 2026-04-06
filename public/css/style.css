@@ -178,14 +178,5 @@ select.form-input {
 #customersubmit{
   position: relative;
   left: 35%;
-}
-
-.seniorbtn{
-  position: relative;
-  top: 20px;
-}
-
-.seniorfield{
-  position: relative;
   top: 10px;
 }

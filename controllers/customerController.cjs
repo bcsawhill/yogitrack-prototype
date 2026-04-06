@@ -8,6 +8,8 @@ exports.add = async (req, res) => {
       lastName,
       email,
       phone,
+      address,
+      classBalance,
       senior
     } = req.body;
 
@@ -23,8 +25,9 @@ exports.add = async (req, res) => {
       lastName,
       email,
       phone,
-      senior,
-      classBalance: 0
+      address,
+      classBalance,
+      senior
     });
 
     // Save to database

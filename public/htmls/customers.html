@@ -6,7 +6,6 @@
     <title>Customers</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
   
 
     <body class="layout--sidebar">
@@ -30,30 +29,27 @@
      <div class="customerInfoContainer">
             <h1>Enter Customer Info</h1>
             <form class="card" id="customerForm">
-                <label class="custinfolabel" for="name">First:</label>
-                <input type="text" id="firstinput" name="name" required>
-                <label class="custinfolabel" for="name">Last:</label>
-                <input type="text" id="lastinput" name="name" required>
+                <label class="custinfolabel" for="firstName">First:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label class="custinfolabel" for="lastName">Last:</label>
+                <input type="text" id="lastName" name="lastName" required>
 
                 <label class="custinfolabel" for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
                 <label class="custinfolabel" for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required>
-                <fieldset class="seniorfield">
-                    <legend>Select one of the following:</legend>
 
-                    <div>
-                        <input class="seniorbtn" required=true type="radio" id="senior" name="option" value="senior" />
-                        <label for="senior">I am a senior</label>
-                    </div>
+                <label class="custinfolabel" for="address">Address:</label>
+                <textarea type="text" id="address" name="address"></textarea>
 
-                    <div>
-                        <input class="seniorbtn" required=true type="radio" id="senior" name="option" value="nonsenior" />
-                        <label for="nonsenior">I am not a senior</label>
-                    </div>
+                <label class="custinfolabel" for="classBalance">Class Balance:</label>
+                <input type="Number" id="classBalance" name="classBalance">
 
-                </fieldset>
+                <label class="custinfolabel" for="senior">Customer is a senior</label>
+                <input type="checkbox" id="senior" name="senior">
+
                 <button id="customersubmit" class="btn" type="submit">Submit</button>
               </form>
         </div>
