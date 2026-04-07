@@ -1,60 +1,31 @@
 const Instructor = require("../models/instructorModel.cjs");
 
-exports.search = async (req, res) => {
-  try {
-    const searchString = req.query.firstname;
-    const instructor = await Instructor.find({
-      firstname: { $regex: searchString, $options: "i" },
-    });
-
-    if (!instructor || instructor.length == 0) {
-      return res.status(404).json({ message: "No instructor found" });
-    } else {
-      res.json(instructor[0]);
-    }
-  } catch (e) {
-    res.status(400).json({error: e.message});
-  }
-};
-
-//Find the package selected in the dropdown
-exports.getInstructor = async (req, res) => {
-  try {
-    const instructorId = req.query.instructorId;
-    const instructorDetail = await Instructor.findOne({ instructorId: instructorId });
-
-    res.json(instructorDetail);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
-  }
-};
-
 exports.add = async (req, res) => {
   try {
     const {
       instructorId,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       phone,
       address,
-      preferredContact
+      pref
     } = req.body;
 
     // Basic validation
-    if (!firstname || !lastname || !email || !phone) {
+    if (!firstName || !lastName || !email || !phone) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
     // Create a new instructor document
     const newInstructor = new Instructor({
       instructorId,
-      firstname,
-      lastname,
-      address,
-      phone,
+      firstName,
+      lastName,
       email,
-      preferredContact
+      phone,
+      address,
+      pref
     });
 
     // Save to database
@@ -66,46 +37,69 @@ exports.add = async (req, res) => {
   }
 };
 
-//Populate the instructorId dropdown
-exports.getInstructorIds = async (req, res) => {
+exports.getNextId = async (req, res) => {
   try {
-    const instructors = await Instructor.find(
-      {},
-      { instructorId: 1, firstname: 1, lastname: 1, _id: 0 }
-    ).sort();
+    const lastInstructor = await Instructor.find({})
+      .sort({ instructorId: -1 })
+      .limit(1);
 
-    res.json(instructors);
+    let maxNumber = 1;
+    if (lastInstructor.length > 0) {
+      const lastId = lastInstructor[0].instructorId;
+      const match = lastId.match(/\d+$/);
+      if (match) {
+        maxNumber = parseInt(match[0]) + 1;
+      }
+    }
+    const nextId = `Y${String(maxNumber).padStart(3, "0")}`;
+    res.json({ nextId });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
 };
 
-exports.getNextId = async (req, res) => {
-  const lastInstructor = await Instructor.find({})
-    .sort({ instructorId: -1 })
-    .limit(1);
+exports.search = async (req, res) => {
+  const q = req.query.q || "";
 
-  let maxNumber = 1;
-  if (lastInstructor.length > 0) {
-    const lastId = lastInstructor[0].instructorId;
-    const match = lastId.match(/\d+$/);
-    if (match) {
-      maxNumber = parseInt(match[0]) + 1;
-    }
-  }
-  const nextId = `I${maxNumber}`;
-  res.json({ nextId });
+  const results = await Instructor.find({
+    $or: [
+      { firstName: new RegExp(q, "i") },
+      { lastName: new RegExp(q, "i") },
+      { email: new RegExp(q, "i") },
+      { phone: new RegExp(q, "i") }
+    ]
+  });
+
+  res.json(results);
 };
 
-exports.deleteInstructor = async (req, res) => {
+exports.getOne = async (req, res) => {
+  const instructor = await Instructor.findOne({ instructorId: req.params.instructorId });
+  res.json(instructor);
+};
+
+exports.update = async (req, res) => {
+  const updated = await Instructor.findOneAndUpdate(
+    { instructorId: req.params.instructorId },
+    req.body,
+    { new: true }
+  );
+
+  res.json({ message: "Updated", instructor: updated });
+};
+
+exports.delete = async (req, res) => {
   try {
-     const {instructorId} = req.query;
-     const result = await Instructor.findOneAndDelete({ instructorId });
-     if (!result) {
-      return res.status(404).json({ error: "Instructor not found" });
+    const deleted = await Instructor.findOneAndDelete({
+      instructorId: req.params.instructorId
+    });
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Instructor not found" });
     }
-    res.json({ message: "Instructor deleted", instructorId });
+
+    res.json({ message: "Instructor deleted", instructor: deleted });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: "Failed to delete instructor", error: err.message });
   }
 };

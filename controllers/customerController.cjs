@@ -59,3 +59,49 @@ exports.getNextId = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
+
+exports.search = async (req, res) => {
+  const q = req.query.q || "";
+
+  const results = await Customer.find({
+    $or: [
+      { firstName: new RegExp(q, "i") },
+      { lastName: new RegExp(q, "i") },
+      { email: new RegExp(q, "i") },
+      { phone: new RegExp(q, "i") }
+    ]
+  });
+
+  res.json(results);
+};
+
+exports.getOne = async (req, res) => {
+  const customer = await Customer.findOne({ customerId: req.params.customerId });
+  res.json(customer);
+};
+
+exports.update = async (req, res) => {
+  const updated = await Customer.findOneAndUpdate(
+    { customerId: req.params.customerId },
+    req.body,
+    { new: true }
+  );
+
+  res.json({ message: "Updated", customer: updated });
+};
+
+exports.delete = async (req, res) => {
+  try {
+    const deleted = await Customer.findOneAndDelete({
+      customerId: req.params.customerId
+    });
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    res.json({ message: "Customer deleted", customer: deleted });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete customer", error: err.message });
+  }
+};

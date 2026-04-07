@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const instructorController = require("../controllers/instructorController.cjs");
 
-router.get("/getInstructor", instructorController.getInstructor);
-router.get("/getNextId", instructorController.getNextId);
 router.post("/add", instructorController.add);
-router.get("/getInstructorIds", instructorController.getInstructorIds);
-router.delete("/deleteInstructor", instructorController.deleteInstructor);
+router.get("/getNextId", instructorController.getNextId);
+router.get("/search", instructorController.search);
+router.get("/:instructorId", instructorController.getOne);
+router.put("/update/:instructorId", instructorController.update);
+router.delete("/delete/:instructorId", instructorController.delete);
 
 module.exports = router;

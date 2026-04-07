@@ -1,90 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>YogiTrack • Instructors</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Instructor</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="layout--sidebar">
+  
+
+    <body class="layout--sidebar">
   <!-- Re-use the same sidebar -->
   <aside class="sidebar">
     <a class="logo-wrap" href="dashboard.html">
       <img src="../images/Logo.png" alt="YogaTrack Logo" class="logo">
     </a>
     <nav class="nav">
-         <a href="instructor.html">Instructors</a>
-        <a href="#">Packages</a>
-        <a href="#">Class Schedule</a>
-        <a href="customers.html">Customers</a>
-        <a href="#">Check-ins</a>
-        <a href="../index.html">Log Out</a>
-    </nav>
+
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-btn">
+      Instructors ▾
+    </button>
+
+    <div class="nav-dropdown-menu">
+      <a href="instructor.html">Add New Instructor</a>
+      <a href="instructor-search.html">Search/Edit Instructors</a>
+    </div>
+  </div>
+  <a href="#">Packages</a>
+  <a href="#">Class Schedule</a>
+
+  <!-- Customers Dropdown -->
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-btn">
+      Customers ▾
+    </button>
+
+    <div class="nav-dropdown-menu">
+      <a href="customers.html">Add New Customer</a>
+      <a href="customers-search.html">Search/Edit Customers</a>
+    </div>
+  </div>
+
+  <a href="#">Check-ins</a>
+  <a href="../index.html">Log Out</a>
+
+</nav>
   </aside>
 
   <!-- Instructor form -->
   <main class="layout--center">
-    <form class="card" id="instructorForm" >
-      <h2>Instructor Details</h2>
+     <div class="instInfoContainer">
+            <h1>Enter Instructor Info</h1>
+            <form class="card" id="instructorForm">
+                <label class="instinfolabel" for="firstName">First:</label>
+                <input type="text" id="firstName" name="firstName" required>
 
-      <!-- Instructor Id-->
-      <label id = "instructorIdLabel" for="instructorID">Instructor ID
-        <select name="instructorId" id="instructorIdSelect" class="form-input" required>
-          <option value=""> -- Select Instructor Id --</option>
-          <!-- Options will be populated by JavaScript-->
-        </select>
-      </label>
+                <label class="instinfolabel" for="lastName">Last:</label>
+                <input type="text" id="lastName" name="lastName" required>
 
-      <label>
-        <!-- Toggle with InstructorIdLabel -->
-         <label id="instructorIdTextLabel" style="display: none;">Instructor ID</label>
-         <input id="instructorIdText" type="text" readonly/>
-      </label>
+                <label class="instinfolabel" for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-      <input type="text" id="instructorIdText" name="instructorId" readonly hidden />
+                <label class="instinfolabel" for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
 
+                <label class="instinfolabel" for="address">Address:</label>
+                <textarea type="text" id="address" name="address"></textarea>
 
-      <div class="grid-2">
-        <label>First&nbsp;Name
-          <input type="text" name="firstname">
-        </label>
-        <label>Last&nbsp;Name
-          <input type="text" name="lastname">
-        </label>
-      </div>
+                <fieldset>
+                  <legend>Preferred Contact</legend>
+                   <div class="radio-row">
+                    <label><input type="radio" name="pref" value="phone">Phone</label>
+                    <label><input type="radio" name="pref" value="email">Email</label>
+                   </div>
+                 </fieldset>
 
-      <label>Address
-        <textarea name="address" rows="2"></textarea>
-      </label>
-
-      <div class="grid-2">
-        <label>Phone
-          <input type="tel" name="phone">
-        </label>
-        <label>Email
-          <input type="email" name="email">
-        </label>
-      </div>
-
-      <fieldset>
-        <legend>Preferred Contact</legend>
-        <div class="radio-row">
-          <label><input type="radio" name="pref" value="phone">Phone</label>
-          <label><input type="radio" name="pref" value="email">Email</label>
+                <button id="instructorsubmit" class="btn" type="submit">Submit</button>
+              </form>
         </div>
-      </fieldset>
-
-      <!-- Action buttons -->
-      <div class="btn-row">
-        <button type="button" class="btn" id="searchBtn">Search</button>
-        <button type="button" class="btn btn--primary", id="addBtn">Add&nbsp;New</button>
-        <button type="button" class="btn", id="saveBtn">Save</button>
-        <button type="button" class="btn btn--danger" id="deleteBtn">Delete</button>
-        <button type="button" class="btn" onclick="clearInstructorForm()">Clear</button>
-        <a href="dashboard.html" class="btn">Exit</a>
-      </div>
-    </form>
   </main>
 
 <script src="../js/instructor.js"></script>
+<script>
+  document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.classList.toggle("open");
+    });
+  });
+</script>
 </body>
 </html>

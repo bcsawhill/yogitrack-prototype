@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Instructors</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="layout--sidebar">
+
+  <aside class="sidebar">
+    <a class="logo-wrap" href="dashboard.html">
+      <img src="../images/Logo.png" class="logo">
+    </a>
+    <nav class="nav">
+
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-btn">
+      Instructors ▾
+    </button>
+
+    <div class="nav-dropdown-menu">
+      <a href="instructor.html">Add New Instructor</a>
+      <a href="instructor-search.html">Search/Edit Instructors</a>
+    </div>
+  </div>
+  <a href="#">Packages</a>
+  <a href="#">Class Schedule</a>
+
+  <!-- Customers Dropdown -->
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-btn">
+      Customers ▾
+    </button>
+
+    <div class="nav-dropdown-menu">
+      <a href="customers.html">Add New Customer</a>
+      <a href="customers-search.html">Search/Edit Customers</a>
+    </div>
+  </div>
+
+  <a href="#">Check-ins</a>
+  <a href="../index.html">Log Out</a>
+
+</nav>
+  </aside>
+
+  <main class="layout--center">
+
+  <div class="instructorSearchContainer">
+  <div class="card card--wide">
+
+    <h1 class="page-title">Search Instructors</h1>
+
+    <div class="search-bar-container">
+      <input type="text" id="searchInput" class="search-input"
+             placeholder="Search by name, email, or phone">
+    </div>
+
+    <table class="results-table" id="resultsTable">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Preferred Contact</th>
+            <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+</div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content card">
+      <h2>Edit Instructor</h2>
+
+      <form id="editForm">
+        <input type="hidden" id="edit_instructorId">
+
+        <label>First Name</label>
+        <input type="text" id="edit_firstName">
+
+        <label>Last Name</label>
+        <input type="text" id="edit_lastName">
+
+        <label>Email</label>
+        <input type="email" id="edit_email">
+
+        <label>Phone</label>
+        <input type="tel" id="edit_phone">
+
+        <label>Address</label>
+        <textarea id="edit_address"></textarea>
+
+        <fieldset>
+                  <legend>Preferred Contact</legend>
+                   <div class="radio-row">
+                    <label><input type="radio" name="pref" value="phone">Phone</label>
+                    <label><input type="radio" name="pref" value="email">Email</label>
+                   </div>
+        </fieldset>
+
+        <button type="submit" class="btn">Save Changes</button>
+        <button type="button" id="closeModal" class="btn">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+  <script src="../js/instructorSearch.js"></script>
+<script>
+  document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.classList.toggle("open");
+    });
+  });
+</script>
+</body>
+</html>
