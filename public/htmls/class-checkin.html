@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Customers</title>
+  <title>Class Check-In</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -13,6 +13,7 @@
     <a class="logo-wrap" href="dashboard.html">
       <img src="../images/Logo.png" class="logo">
     </a>
+
     <nav class="nav">
 
       <div class="nav-dropdown">
@@ -54,78 +55,57 @@
   </aside>
 
   <main class="layout--center">
-
-  <div class="customerSearchContainer">
-  <div class="card">
-
-    <h1 class="page-title">Search Customers</h1>
-
-    <div class="search-bar-container">
-      <input type="text" id="searchInput" class="search-input"
-             placeholder="Search by name, email, or phone">
+    <div class="card card--wide" id="startScreen">
+      <h1 class="page-title">Class Check-In</h1>
+      <button class="btn btn--primary" id="startCheckinBtn">Start Check-Ins</button>
     </div>
 
-    <table class="results-table" id="resultsTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Class Balance</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="card card--wide hidden" id="checkinScreen">
+      <h1 id="checkinTitle"></h1>
+      <h3 id="checkinInstructor"></h3>
 
-  </div>
-</div>
+      <label>Search Customer</label>
+      <input type="text" id="customerSearch" class="form-input" placeholder="Type to search...">
+      <div id="customerResults" class="search-results hidden"></div>
 
-  <!-- Edit Modal -->
-  <div id="editModal" class="modal hidden">
+      <h3>Checked-In Students</h3>
+      <ul id="attendeeList"></ul>
+
+      <div class="btn-row">
+        <button class="btn btn--primary" id="submitRecordBtn">Submit Class Record</button>
+        <button class="btn" id="cancelCheckinBtn">Cancel</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal for selecting class + instructor -->
+  <div id="selectModal" class="modal hidden">
     <div class="modal-content card">
-      <h2>Edit Customer</h2>
+      <h2>Select Class & Instructor</h2>
 
-      <form id="editForm">
-        <input type="hidden" id="edit_customerId">
+      <label>Class</label>
+      <select id="select_class" class="form-input"></select>
 
-        <label>First Name</label>
-        <input type="text" id="edit_firstName">
+      <label>Instructor</label>
+      <input type="text" id="select_instructor" class="form-input" placeholder="Type to search...">
+      <div id="selectInstructorResults" class="search-results hidden"></div>
 
-        <label>Last Name</label>
-        <input type="text" id="edit_lastName">
-
-        <label>Email</label>
-        <input type="email" id="edit_email">
-
-        <label>Phone</label>
-        <input type="tel" id="edit_phone">
-
-        <label>Address</label>
-        <textarea id="edit_address"></textarea>
-
-        <label>Class Balance</label>
-        <input type="number" id="edit_classBalance">
-
-        <label>Senior</label>
-        <input type="checkbox" id="edit_senior">
-
-        <button type="submit" class="btn">Save Changes</button>
-        <button type="button" id="closeModal" class="btn">Cancel</button>
-      </form>
+      <div class="btn-row">
+        <button class="btn btn--primary" id="continueBtn">Continue</button>
+        <button class="btn" id="closeSelectModal">Cancel</button>
+      </div>
     </div>
   </div>
 
-</main>
+  <script src="../js/classCheckin.js"></script>
 
-  <script src="../js/customerSearch.js"></script>
-<script>
-  document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.parentElement.classList.toggle("open");
+  <script>
+    document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("open");
+      });
     });
-  });
-</script>
+  </script>
+
 </body>
 </html>

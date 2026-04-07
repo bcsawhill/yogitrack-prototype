@@ -422,3 +422,23 @@ select.form-input {
 .search-results div:hover {
   background: #f0f0f0;
 }
+
+.hidden {
+  display: none;
+}
+
+.table tr td {
+  padding: 8px 12px;
+}
+
+.table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.table tr:hover {
+  background: #f0f0f0;
+}
+
+.table ul {
+  margin: 0.5rem 0 0 1rem;
+}
