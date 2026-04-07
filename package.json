@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "heroku": "^11.1.1",
     "mongodb": "^7.1.1",
-    "mongoose": "^9.3.3",
-    "mongoose-int32": "^0.6.0"
+    "mongoose": "^9.4.1",
+    "mongoose-int32": "^0.6.0",
+    "mongosh": "^2.8.2"
   }
 }
