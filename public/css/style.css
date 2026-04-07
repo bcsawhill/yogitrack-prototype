@@ -403,3 +403,22 @@ select.form-input {
   padding: 2rem;
 }
 
+.search-results {
+  border: 1px solid #ccc;
+  background: white;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  width: 90%;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.search-results div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background: #f0f0f0;
+}

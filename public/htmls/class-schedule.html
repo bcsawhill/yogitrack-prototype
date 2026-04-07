@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Schedule</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="layout--sidebar">
+
+  <aside class="sidebar">
+    <a class="logo-wrap" href="dashboard.html">
+      <img src="../images/Logo.png" class="logo">
+    </a>
+
+    <nav class="nav">
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Instructor ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="instructor.html">Add New Instructor</a>
+          <a href="instructor-search.html">Search/Edit Instructors</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Packages ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="package-sale.html">Package Sale</a>
+          <a href="package-sales.html">Package Sale Records</a>
+          <a href="package-edit.html">Edit Packages</a>
+        </div>
+      </div>
+
+      <a href="class-schedule.html" class="active">Class Schedule</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Customers ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="customers.html">Add New Customer</a>
+          <a href="customers-search.html">Search/Edit Customer</a>
+        </div>
+      </div>
+
+      <a href="../index.html">Log Out</a>
+    </nav>
+  </aside>
+
+  <main class="layout--center">
+    <div class="card card--wide">
+      <h1 class="page-title">Class Schedule</h1>
+
+      <div class="btn-row">
+        <button class="btn btn--primary" id="addClassBtn">Add Class</button>
+      </div>
+
+      <div id="scheduleContainer"></div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content card">
+      <h2>Class Details</h2>
+
+      <form id="editForm">
+
+        <label>Class ID</label>
+        <input type="text" id="edit_classId" disabled>
+
+        <label>Day of Week</label>
+        <select id="edit_day" class="form-input">
+          <option>Sunday</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+        </select>
+
+        <label>Time</label>
+        <select id="edit_time" class="form-input">
+          <option>6AM</option>
+          <option>7AM</option>
+          <option>8AM</option>
+          <option>9AM</option>
+          <option>10AM</option>
+          <option>11AM</option>
+          <option>12PM</option>
+          <option>1PM</option>
+          <option>2PM</option>
+          <option>3PM</option>
+          <option>4PM</option>
+          <option>5PM</option>
+          <option>6PM</option>
+          <option>7PM</option>
+        </select>
+
+        <label>Class Name</label>
+        <input type="text" id="edit_name">
+
+        <label>Description</label>
+        <textarea id="edit_description"></textarea>
+
+        <label>Instructor</label>
+        <input type="text" id="edit_instructor" class="form-input" placeholder="Type to search...">
+
+        <div id="instructorResults" class="search-results hidden"></div>
+
+        <div class="btn-row">
+          <button class="btn btn--primary" type="submit">Save</button>
+          <button class="btn btn--danger" type="button" id="deleteClassBtn">Delete</button>
+          <button class="btn" type="button" id="closeModal">Cancel</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/classSchedule.js"></script>
+
+  <script>
+    document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("open");
+      });
+    });
+  </script>
+
+</body>
+</html>
