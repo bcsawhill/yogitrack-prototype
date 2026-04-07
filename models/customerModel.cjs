@@ -9,7 +9,9 @@ const customerModel = new mongoose.Schema({
     phone: { type: String, required: true },
     address: { type: String, default: "" },
     classBalance: { type: Number, default: 0 },
-    senior: { type: Boolean, default: false }
+    senior: { type: Boolean, default: false },
+    unlimitedActive: { type: Boolean, default: false },
+    unlimitedExpires: { type: Date, default: null }
 }, { collection: "customer" });
 
 module.exports = mongoose.model("Customer", customerModel);

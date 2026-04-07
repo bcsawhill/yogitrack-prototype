@@ -2,23 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YogiTrack • Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Package Sale</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
-  <!-- Overlay first: full-screen dimmer behind everything -->
-  <div class="background">
-    <div class="overlay">
-
-  <div class="layout--sidebar">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <a class="logo-wrap" href="dashboard.html">
-        <img src="../Images/Logo.png" alt="YogiTrack Logo" class="logo" />
-
-      </a>
-      <nav class="nav">
+<body class="layout--sidebar">
+  <aside class="sidebar">
+    <a class="logo-wrap" href="dashboard.html">
+      <img src="../images/Logo.png" class="logo">
+    </a>
+    <nav class="nav">
       <div class="nav-dropdown">
         <button class="nav-dropdown-btn">Instructor ▾</button>
         <div class="nav-dropdown-menu">
@@ -47,18 +41,31 @@
       <a href="#">Check-ins</a>
       <a href="../index.html">Log Out</a>
     </nav>
-    </aside>
+  </aside>
 
+  <main class="layout--center">
+    <div class="card card--wide">
+      <h1 class="page-title">Package Sale</h1>
 
-  </div>
-    </div> <!-- End of background wrapper -->
-    <script>
-  document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.parentElement.classList.toggle("open");
+      <label for="customerSelect">Select Customer</label>
+      <select id="customerSelect" class="form-input"></select>
+
+      <label for="packageSelect">Select Package</label>
+      <select id="packageSelect" class="form-input"></select>
+
+      <div class="btn-row">
+        <button class="btn btn--primary" id="completeSaleBtn">Complete Sale</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/packageSale.js"></script>
+  <script>
+    document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("open");
+      });
     });
-  });
-</script>
+  </script>
 </body>
-
 </html>

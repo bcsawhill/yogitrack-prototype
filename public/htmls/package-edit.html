@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Packages</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="layout--sidebar">
+  <aside class="sidebar">
+    <a class="logo-wrap" href="dashboard.html">
+      <img src="../images/Logo.png" class="logo">
+    </a>
+    <nav class="nav">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Instructor ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="instructor.html">Add New Instructor</a>
+          <a href="instructor-search.html">Search/Edit Instructors</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Packages ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="package-sale.html">Package Sale</a>
+          <a href="package-sales.html">Package Sale Records</a>
+          <a href="package-edit.html">Edit Packages</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Customers ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="customers.html">Add New Customer</a>
+          <a href="customers-search.html">Search/Edit Customer</a>
+        </div>
+      </div>
+
+      <a href="#">Check-ins</a>
+      <a href="../index.html">Log Out</a>
+    </nav>
+  </aside>
+
+  <main class="layout--center">
+    <div class="card card--wide">
+      <h1 class="page-title">Edit Packages</h1>
+
+        <div class="btn-row" style="margin-bottom: 1rem;">
+          <button class="btn btn--primary" id="newPackageBtn">New Package</button>
+        </div>
+
+      <table class="results-table" id="packageTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Class Count</th>
+            <th>Unlimited</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal hidden">
+      <div class="modal-content card">
+        <h2>Edit Package</h2>
+        <form id="editForm">
+          <label>Package ID</label>
+          <input type="text" id="edit_packageId">
+
+          <label>Package Name</label>
+          <input type="text" id="edit_packageName">
+
+          <label>Description</label>
+          <textarea id="edit_description"></textarea>
+
+          <label>Price</label>
+          <input type="number" step="0.01" id="edit_price">
+
+          <label>Class Count</label>
+          <input type="number" id="edit_classCount">
+
+          <label>
+            <input type="checkbox" id="edit_isUnlimited">
+            Unlimited Package
+          </label>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn--primary">Save Changes</button>
+            <button type="button" id="closeModal" class="btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/packageEdit.js"></script>
+  <script>
+    document.querySelectorAll(".nav-dropdown-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("open");
+      });
+    });
+  </script>
+</body>
+</html>
